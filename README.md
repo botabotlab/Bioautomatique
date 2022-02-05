@@ -1,5 +1,3 @@
-# Cours de bioautomatique
-
 # Cours de Bioautomatique
 
 ## Table des acronymes
