@@ -7,61 +7,61 @@
  * [Discord](https://discord.gg/WuSMkwPEZB) vous trouverez des channels dédiés au cours de bioautomatique.
 
 
-# Contenu du cours
+## Contenu du cours
 
-## Serveur et logiciels
+### Serveur et logiciels
 
-### Linux sur un SBC
+#### Linux sur un SBC
 
 * Introduction
 * Installation de Linux
 * Setup 
 
-### Node-RED
+#### Node-RED
 
 * Installation
 * Setup
 
-### Broker MQTT
+#### Broker MQTT
 
 * Installation et setup
 
-## Microcontrôleurs 
+### Microcontrôleurs 
 
-### Programmation
+#### Programmation
 
 * IDE
 * Support ESP32 et ESP8266
 * Bibliothèques
 
-## Capteurs et actionneurs
+### Capteurs et actionneurs
 
-### Hardware
+#### Hardware
 
-### Software
+#### Software
 
-### Communication
+#### Communication
 
-## Automatisation
+### Automatisation
 
-### Communication
+#### Communication
 
-### Traitement des données
+#### Traitement des données
 
-### Workflow (cheminement de l'information)
+#### Workflow (cheminement de l'information)
 
-## Conception 
+### Conception 
 
-### Impression 3D
+#### Impression 3D
 
-### Modélisation 3D 
+#### Modélisation 3D 
 
-### Création et Hack  (Think out of the box ! Sky is the limit)
+#### Création et Hack  (Think out of the box ! Sky is the limit)
 
-## Bonnes pratiques
+### Bonnes pratiques
 
-### Où se fournir 
+#### Où se fournir 
 
-### Où chercher des infos (RTFM)
+#### Où chercher des infos (RTFM)
 
-### Do and Don't 
+#### Do and Don't 
