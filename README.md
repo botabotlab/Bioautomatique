@@ -4,8 +4,7 @@
  * [Youtube](https://www.youtube.com/c/NeodymeTV)
  * [Twitch](https://www.twitch.tv/ioodyme)
  * [Publications](https://scholar.google.com/citations?user=kaca3hsAAAAJ&hl=en)
- * [Discord](https://discord.gg/WuSMkwPEZB) vous trouverez des channels dédiés au cours de bioautomatique.
-
+ * [Discord](https://discord.gg/U7EJBRn5VQ) 
 
 ## Contenu du cours
 
@@ -13,26 +12,21 @@
 
 #### Linux sur un SBC
 
-* Introduction
-* Installation de Linux
-* Setup 
+* [Introduction](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#cest-quoi-un-single-board-computer-)
+* [Installation de Linux](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#installation-de-linux)
+* [Setup](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#setup-du-sbc)
 
 #### Node-RED
 
-* Installation
-* Setup
+* [C'est quoi Node-RED ? (Vidéo)](https://youtu.be/Co4JNWHJUOw)
+* [Installation](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#installation-sur-linux-recommand%C3%A9)
+* [Setup](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#configuration-de-node-red)
 
 #### Broker MQTT
-
-* Installation et setup
 
 ### Microcontrôleurs 
 
 #### Programmation
-
-* IDE
-* Support ESP32 et ESP8266
-* Bibliothèques
 
 ### Capteurs et actionneurs
 
