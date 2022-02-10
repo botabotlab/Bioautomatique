@@ -51,7 +51,7 @@
 
 #### Modélisation 3D 
 
-#### Création et Hack  (Think out of the box ! Sky is the limit)
+#### Création et Hack
 
 ### Bonnes pratiques
 
