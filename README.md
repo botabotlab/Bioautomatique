@@ -6,7 +6,6 @@
  * [Youtube](https://www.youtube.com/c/NeodymeTV)
  * [Twitch](https://www.twitch.tv/ioodyme)
  * [Publications](https://scholar.google.com/citations?user=kaca3hsAAAAJ&hl=en)
- * [Discord](https://discord.gg/U7EJBRn5VQ) 
 
 ## Contenu du cours
 
