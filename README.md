@@ -1,11 +1,12 @@
-# Cours de Bioautomatique 
+# Contenu du cours
 
-## A propos de l'auteur
+## À propos de l'auteur
 
 ### Réseaux sociaux
  * [Youtube](https://www.youtube.com/c/NeodymeTV)
  * [Twitch](https://www.twitch.tv/ioodyme)
  * [Publications](https://scholar.google.com/citations?user=kaca3hsAAAAJ&hl=en)
+ * [Discord](https://discord.gg/U7EJBRn5VQ) 
 
 ## Contenu du cours
 
@@ -23,40 +24,7 @@
 * [Installation](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#installation-sur-linux-recommand%C3%A9)
 * [Setup](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#configuration-de-node-red)
 
-#### Broker MQTT
+### Devoir
 
-### Microcontrôleurs 
+[Énoncés](https://github.com/botabotlab/Bioautomatique/wiki/Devoir-1)
 
-#### Programmation
-
-### Capteurs et actionneurs
-
-#### Hardware
-
-#### Software
-
-#### Communication
-
-### Automatisation
-
-#### Communication
-
-#### Traitement des données
-
-#### Workflow (cheminement de l'information)
-
-### Conception 
-
-#### Impression 3D
-
-#### Modélisation 3D 
-
-#### Création et Hack
-
-### Bonnes pratiques
-
-#### Où se fournir 
-
-#### Où chercher des infos (RTFM)
-
-#### Do and Don't 
