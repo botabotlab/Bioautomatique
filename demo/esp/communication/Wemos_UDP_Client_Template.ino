@@ -5,7 +5,7 @@
 WiFiClient client;
 const char* ssid = "SSID";
 const char* password = "PASSWORD";
-const char* HostName = "ESP8266_MQTT_HTTP_DEMO";
+const char* HostName = "ESP8266_UDP_CLIENT_DEMO";
 
 #define UDP_PORT 2891
 #define UDP_SERVER "192.168.178.100"
