@@ -1,12 +1,12 @@
-//#include <ESP8266WiFi.h>
-#include <WiFi.h>
+#include <ESP8266WiFi.h>
+//#include <WiFi.h>
 #include <PubSubClient.h>
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 const char* ssid = "SSID";
 const char* password = "PASSWORD";
-const char* mqtt_server = "192.168.178.100";
+const char* mqtt_server = "192.168.8.200";
 const char* HostName = "ESP8266_MQTT_SERIAL_DEMO";
 const char* TopicPING = "demo/topic/ping";
 const char* TopicPONG = "demo/topic/pong";
@@ -75,6 +75,7 @@ void callback(String topic, byte * message, unsigned int length) {
   Serial.println(messageTemp);
 
   if (messageTemp == "PING") {
+    Serial.println("Sending PONG");
     client.publish(TopicPONG, "PONG");
   }
 }
