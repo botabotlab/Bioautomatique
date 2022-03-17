@@ -33,16 +33,17 @@ void setup_wifi() {
 void TCPHandle() {
   WiFiClient client = server.available();
   if (client) {
+    Serial.println("New client");
     while (client.connected()) {
       while (client.available() > 0) {
         char c = client.read();
         Serial.write(c);
       }
-      delay(10);
+      Serial.println();
       client.write("PONG");
+      delay(10);
+      client.stop();
     }
-
-    client.stop();
     Serial.println("Client disconnected");
   }
 }
