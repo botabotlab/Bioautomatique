@@ -7,8 +7,8 @@ const char* ssid = "SSID";
 const char* password = "PASSWORD";
 const char* HostName = "ESP8266_UDP_CLIENT_DEMO";
 
-#define UDP_PORT 2891
-#define UDP_SERVER "192.168.178.100"
+#define UDP_PORT 2880
+#define UDP_SERVER "192.168.8.200"
 
 WiFiUDP UDP;
 char ping[] = "PING";
@@ -39,6 +39,7 @@ void setup() {
 
   //PING---------------------------------
   UDP.beginPacket(UDP_SERVER, UDP_PORT);
+  Serial.println("Sending PING");
   UDP.write(ping);
   UDP.endPacket();
   //PING---------------------------------
