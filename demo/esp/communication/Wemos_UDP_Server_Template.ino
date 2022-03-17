@@ -7,7 +7,7 @@ const char* ssid = "SSID";
 const char* password = "PASSWORD";
 const char* HostName = "ESP8266_UDP_SERVER_DEMO";
 
-#define UDP_PORT 2881
+#define UDP_PORT 2880
 WiFiUDP UDP;
 char packet[255];
 char reply[] = "PONG";
