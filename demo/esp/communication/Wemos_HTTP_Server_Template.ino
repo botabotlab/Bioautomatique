@@ -38,8 +38,8 @@ void setup() {
 }
 //SETUP=================
 
-//LOOP===========================================================================
-void loop() {
+//HTTP=========================================================================================================================================
+void HTTPHandle(){
   WiFiClient client = server.available();
   if (client) {
     Serial.println("New Client.");
@@ -53,16 +53,10 @@ void loop() {
         Serial.write(c);
         header += c;
         if (c == '\n') {
-          if (header.indexOf("POST /ping") >= 0) {
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text");
-            client.println("Connection: close");
-            client.println();
-
+          if (header.indexOf("GET /ping") >= 0) {
+            String response = "PONG";
+            client.printf("HTTP/1.1 200 OK\r\nContent-Type: text/plain\nContent-Length: %u\r\n\r\n%s", response.length(), response.c_str());
             Serial.println("PONG");
-            client.println("PONG");
-            client.println();
-            client.println();
             header = "";
             client.stop();
             Serial.println("Client disconnected.");
@@ -71,5 +65,11 @@ void loop() {
       }
     }
   }
+}
+//HTTP=========================================================================================================================================
+
+//LOOP===========================================================================
+void loop() {
+  HTTPHandle();
 }
 //LOOP===========================================================================
