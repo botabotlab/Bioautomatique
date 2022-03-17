@@ -6,8 +6,8 @@ HTTPClient http;
 
 const char* ssid = "SSID";
 const char* password = "PASSWORD";
-const char* HostName = "ESP8266_HTTP_CLIENT_DEMO";
-String server = "http://192.168.178.100:2880/remote/test";
+const char* HostName = "ESP8266_MQTT_HTTP_DEMO";
+String server = "http://192.168.8.200:1880/ping";
 
 //WIFI SETUP=============================
 void setup_wifi() {
