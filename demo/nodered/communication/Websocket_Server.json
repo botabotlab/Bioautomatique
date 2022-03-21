@@ -1,0 +1,87 @@
+[
+    {
+        "id": "734f1e04df832bc3",
+        "type": "group",
+        "z": "6a1e2a5443d1ef06",
+        "name": "Websocket",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffff7f",
+            "fill-opacity": "0.49",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "df3380b5df0c102e",
+            "2d3332694e91b9ef",
+            "acf91b1ca16a05cd"
+        ],
+        "env": [],
+        "x": 54,
+        "y": 229,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "df3380b5df0c102e",
+        "type": "websocket in",
+        "z": "6a1e2a5443d1ef06",
+        "g": "734f1e04df832bc3",
+        "name": "Websocket IN",
+        "server": "8d108b6fe6b9bd17",
+        "client": "",
+        "x": 150,
+        "y": 270,
+        "wires": [
+            [
+                "acf91b1ca16a05cd"
+            ]
+        ]
+    },
+    {
+        "id": "2d3332694e91b9ef",
+        "type": "websocket out",
+        "z": "6a1e2a5443d1ef06",
+        "g": "734f1e04df832bc3",
+        "name": "WS Out",
+        "server": "8d108b6fe6b9bd17",
+        "client": "",
+        "x": 480,
+        "y": 270,
+        "wires": []
+    },
+    {
+        "id": "acf91b1ca16a05cd",
+        "type": "change",
+        "z": "6a1e2a5443d1ef06",
+        "g": "734f1e04df832bc3",
+        "name": "PONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 270,
+        "wires": [
+            [
+                "2d3332694e91b9ef"
+            ]
+        ]
+    },
+    {
+        "id": "8d108b6fe6b9bd17",
+        "type": "websocket-listener",
+        "path": "/ws/remote/in",
+        "wholemsg": "false"
+    }
+]
