@@ -1,0 +1,545 @@
+[
+    {
+        "id": "e163a39cf16a458c",
+        "type": "group",
+        "z": "33d28f4fab4af775",
+        "name": "HTTP",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffff7f",
+            "fill-opacity": "0.48",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "bf4d97a84c0f6e44",
+            "fa42e098baf61aac",
+            "a044cb01e19b87b7"
+        ],
+        "x": 38,
+        "y": 43,
+        "w": 814,
+        "h": 504
+    },
+    {
+        "id": "bf4d97a84c0f6e44",
+        "type": "group",
+        "z": "33d28f4fab4af775",
+        "g": "e163a39cf16a458c",
+        "name": "Node-RED to Node-RED [LOCAL]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.52"
+        },
+        "nodes": [
+            "2c7640e4b77881cf",
+            "6b45495a3ee06e50",
+            "5dbf6b3dacf3f748",
+            "54a41bf46e6d4dfd",
+            "da00b0d2b078908d",
+            "6909bb3fc2e7c285",
+            "2e3e65b89fc7c6c2",
+            "bde9c6f211322ea8",
+            "eaf0178f6596a09b"
+        ],
+        "x": 64,
+        "y": 69,
+        "w": 762,
+        "h": 172
+    },
+    {
+        "id": "2c7640e4b77881cf",
+        "type": "http in",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "HTTP In Local",
+        "url": "/local/test",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "da00b0d2b078908d"
+            ]
+        ]
+    },
+    {
+        "id": "6b45495a3ee06e50",
+        "type": "http request",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "HTTP request Local",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "127.0.0.1:1880/local/test",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 370,
+        "y": 150,
+        "wires": [
+            [
+                "6909bb3fc2e7c285",
+                "2e3e65b89fc7c6c2"
+            ]
+        ]
+    },
+    {
+        "id": "5dbf6b3dacf3f748",
+        "type": "inject",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 180,
+        "y": 150,
+        "wires": [
+            [
+                "6b45495a3ee06e50",
+                "bde9c6f211322ea8",
+                "2e3e65b89fc7c6c2"
+            ]
+        ]
+    },
+    {
+        "id": "54a41bf46e6d4dfd",
+        "type": "http response",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "HTT¨P Resp Local",
+        "statusCode": "",
+        "headers": {},
+        "x": 570,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "da00b0d2b078908d",
+        "type": "change",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "54a41bf46e6d4dfd"
+            ]
+        ]
+    },
+    {
+        "id": "6909bb3fc2e7c285",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "2e3e65b89fc7c6c2",
+        "type": "function",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 150,
+        "wires": [
+            [
+                "eaf0178f6596a09b"
+            ]
+        ]
+    },
+    {
+        "id": "bde9c6f211322ea8",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "eaf0178f6596a09b",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "bf4d97a84c0f6e44",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "fa42e098baf61aac",
+        "type": "group",
+        "z": "33d28f4fab4af775",
+        "g": "e163a39cf16a458c",
+        "name": "Node-RED to Node-RED [REMOTE]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.49",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "f1b448890033b916",
+            "98ef114696cdc890",
+            "d916b4ff7201ca5e",
+            "707ae9f3090e092c",
+            "a256f9c286e06df2",
+            "d7e3f1b23d6c4e73"
+        ],
+        "x": 64,
+        "y": 259,
+        "w": 762,
+        "h": 122
+    },
+    {
+        "id": "f1b448890033b916",
+        "type": "inject",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "98ef114696cdc890",
+                "d7e3f1b23d6c4e73",
+                "d916b4ff7201ca5e"
+            ]
+        ]
+    },
+    {
+        "id": "98ef114696cdc890",
+        "type": "http request",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "HTTP request Remote",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "192.168.178.100:2881/remote/test",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "707ae9f3090e092c",
+                "d916b4ff7201ca5e"
+            ]
+        ]
+    },
+    {
+        "id": "d916b4ff7201ca5e",
+        "type": "function",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 340,
+        "wires": [
+            [
+                "a256f9c286e06df2"
+            ]
+        ]
+    },
+    {
+        "id": "707ae9f3090e092c",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a256f9c286e06df2",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d7e3f1b23d6c4e73",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "fa42e098baf61aac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a044cb01e19b87b7",
+        "type": "group",
+        "z": "33d28f4fab4af775",
+        "g": "e163a39cf16a458c",
+        "name": "Node-RED to ESP8266",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#7fb7df",
+            "fill-opacity": "0.51",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "b88af79f7c2861a9",
+            "3071ed0ea76cab4a",
+            "4639b3707ce4bad8",
+            "e30887b3db6e67cc",
+            "fee55329fd870176",
+            "27f0fb80924f2476"
+        ],
+        "x": 64,
+        "y": 399,
+        "w": 762,
+        "h": 122
+    },
+    {
+        "id": "b88af79f7c2861a9",
+        "type": "inject",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "4639b3707ce4bad8",
+                "3071ed0ea76cab4a",
+                "fee55329fd870176"
+            ]
+        ]
+    },
+    {
+        "id": "3071ed0ea76cab4a",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4639b3707ce4bad8",
+        "type": "http request",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "HTTP request Remote",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "192.168.178.136:80/ping",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "e30887b3db6e67cc",
+                "fee55329fd870176"
+            ]
+        ]
+    },
+    {
+        "id": "e30887b3db6e67cc",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "fee55329fd870176",
+        "type": "function",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 480,
+        "wires": [
+            [
+                "27f0fb80924f2476"
+            ]
+        ]
+    },
+    {
+        "id": "27f0fb80924f2476",
+        "type": "debug",
+        "z": "33d28f4fab4af775",
+        "g": "a044cb01e19b87b7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 480,
+        "wires": []
+    }
+]
