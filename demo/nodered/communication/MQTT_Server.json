@@ -1,0 +1,120 @@
+[
+    {
+        "id": "0b46ce431606c4bd",
+        "type": "group",
+        "z": "6a1e2a5443d1ef06",
+        "name": "MQTT",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#b797cf",
+            "fill-opacity": "0.48",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "46a760133cbe4cee",
+            "2270983f9675ee59",
+            "c8d3afccbd76310d"
+        ],
+        "env": [],
+        "x": 54,
+        "y": 409,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "46a760133cbe4cee",
+        "type": "mqtt in",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0b46ce431606c4bd",
+        "name": "MQTT In",
+        "topic": "nodered/remote/ping",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9ec41186cf8390e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 450,
+        "wires": [
+            [
+                "c8d3afccbd76310d"
+            ]
+        ]
+    },
+    {
+        "id": "2270983f9675ee59",
+        "type": "mqtt out",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0b46ce431606c4bd",
+        "name": "MQTT Out",
+        "topic": "nodered/remote/pong",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9ec41186cf8390e2",
+        "x": 470,
+        "y": 450,
+        "wires": []
+    },
+    {
+        "id": "c8d3afccbd76310d",
+        "type": "change",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0b46ce431606c4bd",
+        "name": "PONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 450,
+        "wires": [
+            [
+                "2270983f9675ee59"
+            ]
+        ]
+    },
+    {
+        "id": "9ec41186cf8390e2",
+        "type": "mqtt-broker",
+        "name": "Mosquitto",
+        "broker": "192.168.178.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
