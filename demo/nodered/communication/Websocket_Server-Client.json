@@ -1,0 +1,588 @@
+[
+    {
+        "id": "d5fe975bf6adaeef",
+        "type": "group",
+        "z": "2609d7c924c90ce0",
+        "name": "Websocket",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffff7f",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.46"
+        },
+        "nodes": [
+            "6848bbd2687f4b88",
+            "601610cf06966f40",
+            "d7c49ff084162a6d"
+        ],
+        "x": 48,
+        "y": 43,
+        "w": 854,
+        "h": 654
+    },
+    {
+        "id": "6848bbd2687f4b88",
+        "type": "group",
+        "z": "2609d7c924c90ce0",
+        "g": "d5fe975bf6adaeef",
+        "name": "Node-RED to Node-RED [LOCAL]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "6d535d07f17a6734",
+            "c802709879c5a881",
+            "14e608a1cc66bd29",
+            "1b5b3e297a366043",
+            "7b27c3d86c226cc6",
+            "c854e43d9eefbd1b",
+            "3f218b9802767e39",
+            "d5c725f895721497",
+            "0ca5a0910e8bd1ae",
+            "74e57669fd5a85eb"
+        ],
+        "x": 74,
+        "y": 69,
+        "w": 802,
+        "h": 232
+    },
+    {
+        "id": "6d535d07f17a6734",
+        "type": "websocket in",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "Websocket In Local",
+        "server": "64fcfd0b7995f301",
+        "client": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "0ca5a0910e8bd1ae"
+            ]
+        ]
+    },
+    {
+        "id": "c802709879c5a881",
+        "type": "websocket out",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "Websocket Ping Local",
+        "server": "79f4d5d419f6e067",
+        "client": "",
+        "x": 420,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "14e608a1cc66bd29",
+        "type": "inject",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 230,
+        "y": 150,
+        "wires": [
+            [
+                "c802709879c5a881",
+                "c854e43d9eefbd1b",
+                "3f218b9802767e39"
+            ]
+        ]
+    },
+    {
+        "id": "1b5b3e297a366043",
+        "type": "websocket out",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "Websocket Out Local",
+        "server": "c2ee6021e4c07ace",
+        "client": "",
+        "x": 640,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7b27c3d86c226cc6",
+        "type": "websocket in",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "Websocket In Local",
+        "server": "73ab76106c31c746",
+        "client": "",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "c854e43d9eefbd1b",
+                "74e57669fd5a85eb"
+            ]
+        ]
+    },
+    {
+        "id": "c854e43d9eefbd1b",
+        "type": "function",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 150,
+        "wires": [
+            [
+                "d5c725f895721497"
+            ]
+        ]
+    },
+    {
+        "id": "3f218b9802767e39",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "d5c725f895721497",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "0ca5a0910e8bd1ae",
+        "type": "function",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "set msg.paylaod",
+        "func": "\nreturn {payload : \"PONG\"};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "1b5b3e297a366043"
+            ]
+        ]
+    },
+    {
+        "id": "74e57669fd5a85eb",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "6848bbd2687f4b88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "64fcfd0b7995f301",
+        "type": "websocket-listener",
+        "path": "/ws/local/in",
+        "wholemsg": "false"
+    },
+    {
+        "id": "79f4d5d419f6e067",
+        "type": "websocket-listener",
+        "path": "ws://127.0.0.1:1880/ws/local/in",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c2ee6021e4c07ace",
+        "type": "websocket-listener",
+        "path": "/ws/local/out",
+        "wholemsg": "false"
+    },
+    {
+        "id": "73ab76106c31c746",
+        "type": "websocket-listener",
+        "path": "ws://127.0.0.1:1880/ws/local/out",
+        "wholemsg": "false"
+    },
+    {
+        "id": "601610cf06966f40",
+        "type": "group",
+        "z": "2609d7c924c90ce0",
+        "g": "d5fe975bf6adaeef",
+        "name": "Node-RED to Node-RED [REMOTE]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "7ca97712d569cc09",
+            "6b55f8c75ae4657b",
+            "c8191af7c02863d5",
+            "f2b28f3fe7264333",
+            "0d9f6ce59e682b79",
+            "eae6473c65313b5d",
+            "56205c3f1231c94e"
+        ],
+        "x": 74,
+        "y": 309,
+        "w": 802,
+        "h": 172
+    },
+    {
+        "id": "7ca97712d569cc09",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "6b55f8c75ae4657b",
+        "type": "websocket out",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "Websocket Ping Local",
+        "server": "3ff0ab241f184b5d",
+        "client": "",
+        "x": 420,
+        "y": 390,
+        "wires": []
+    },
+    {
+        "id": "c8191af7c02863d5",
+        "type": "inject",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 230,
+        "y": 390,
+        "wires": [
+            [
+                "6b55f8c75ae4657b",
+                "0d9f6ce59e682b79",
+                "eae6473c65313b5d"
+            ]
+        ]
+    },
+    {
+        "id": "f2b28f3fe7264333",
+        "type": "websocket in",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "Websocket In Local",
+        "server": "3ff0ab241f184b5d",
+        "client": "",
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "7ca97712d569cc09",
+                "0d9f6ce59e682b79"
+            ]
+        ]
+    },
+    {
+        "id": "0d9f6ce59e682b79",
+        "type": "function",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 390,
+        "wires": [
+            [
+                "56205c3f1231c94e"
+            ]
+        ]
+    },
+    {
+        "id": "eae6473c65313b5d",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "56205c3f1231c94e",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "601610cf06966f40",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 390,
+        "wires": []
+    },
+    {
+        "id": "3ff0ab241f184b5d",
+        "type": "websocket-listener",
+        "path": "ws://192.168.178.100:2881/ws/remote/in",
+        "wholemsg": "false"
+    },
+    {
+        "id": "d7c49ff084162a6d",
+        "type": "group",
+        "z": "2609d7c924c90ce0",
+        "g": "d5fe975bf6adaeef",
+        "name": "Node-RED to ESP8266",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#7fb7df",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.47"
+        },
+        "nodes": [
+            "8c7e93d078b4abbb",
+            "5f2697d8c9f6f8ec",
+            "86156423faa3018e",
+            "cbd3500965880016",
+            "b297ceb562cba4f7",
+            "9c469d7551804fa5",
+            "9e702a6d12629f7c"
+        ],
+        "x": 74,
+        "y": 499,
+        "w": 792,
+        "h": 172
+    },
+    {
+        "id": "8c7e93d078b4abbb",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 630,
+        "wires": []
+    },
+    {
+        "id": "5f2697d8c9f6f8ec",
+        "type": "websocket in",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "Websocket In Local",
+        "server": "6afcbed948533e70",
+        "client": "",
+        "x": 190,
+        "y": 630,
+        "wires": [
+            [
+                "8c7e93d078b4abbb",
+                "9c469d7551804fa5"
+            ]
+        ]
+    },
+    {
+        "id": "86156423faa3018e",
+        "type": "inject",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 230,
+        "y": 580,
+        "wires": [
+            [
+                "cbd3500965880016",
+                "9c469d7551804fa5",
+                "b297ceb562cba4f7"
+            ]
+        ]
+    },
+    {
+        "id": "cbd3500965880016",
+        "type": "websocket out",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "Websocket Ping Local",
+        "server": "6afcbed948533e70",
+        "client": "",
+        "x": 410,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "b297ceb562cba4f7",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "9c469d7551804fa5",
+        "type": "function",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 580,
+        "wires": [
+            [
+                "9e702a6d12629f7c"
+            ]
+        ]
+    },
+    {
+        "id": "9e702a6d12629f7c",
+        "type": "debug",
+        "z": "2609d7c924c90ce0",
+        "g": "d7c49ff084162a6d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "6afcbed948533e70",
+        "type": "websocket-listener",
+        "path": "ws://192.168.178.136:80",
+        "wholemsg": "false"
+    }
+]
