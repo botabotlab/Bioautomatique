@@ -1,0 +1,634 @@
+[
+    {
+        "id": "ead7adfc4c3238f3",
+        "type": "group",
+        "z": "df1af7b9448c2c81",
+        "name": "MQTT",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#b797cf",
+            "fill-opacity": "0.5",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "5da01fec22a83745",
+            "b508f1fdd38be1e0",
+            "858b6fdd70a5c528"
+        ],
+        "x": 28,
+        "y": 43,
+        "w": 844,
+        "h": 644
+    },
+    {
+        "id": "5da01fec22a83745",
+        "type": "group",
+        "z": "df1af7b9448c2c81",
+        "g": "ead7adfc4c3238f3",
+        "name": "Node-RED to Node-RED [LOCAL]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.47",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "aa36559ac43b0eb0",
+            "46a760133cbe4cee",
+            "fea23beddb49bf3a",
+            "a17a6c9d6c59a5ea",
+            "7130f658ea512cb9",
+            "414108e897a04f7b",
+            "db4bb2903443da38",
+            "410dedc59f08a169",
+            "2270983f9675ee59",
+            "f56ee82ef6cbd21f"
+        ],
+        "x": 54,
+        "y": 69,
+        "w": 792,
+        "h": 222
+    },
+    {
+        "id": "aa36559ac43b0eb0",
+        "type": "mqtt in",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "topic": "nodered/local/pong",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9ec41186cf8390e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 250,
+        "wires": [
+            [
+                "db4bb2903443da38",
+                "410dedc59f08a169"
+            ]
+        ]
+    },
+    {
+        "id": "46a760133cbe4cee",
+        "type": "mqtt in",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "topic": "nodered/local/ping",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9ec41186cf8390e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "414108e897a04f7b"
+            ]
+        ]
+    },
+    {
+        "id": "fea23beddb49bf3a",
+        "type": "inject",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ping",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 150,
+        "wires": [
+            [
+                "7130f658ea512cb9",
+                "a17a6c9d6c59a5ea",
+                "410dedc59f08a169"
+            ]
+        ]
+    },
+    {
+        "id": "a17a6c9d6c59a5ea",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "7130f658ea512cb9",
+        "type": "mqtt out",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "topic": "nodered/local/ping",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9ec41186cf8390e2",
+        "x": 400,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "414108e897a04f7b",
+        "type": "change",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "2270983f9675ee59"
+            ]
+        ]
+    },
+    {
+        "id": "db4bb2903443da38",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 250,
+        "wires": []
+    },
+    {
+        "id": "410dedc59f08a169",
+        "type": "function",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 150,
+        "wires": [
+            [
+                "f56ee82ef6cbd21f"
+            ]
+        ]
+    },
+    {
+        "id": "2270983f9675ee59",
+        "type": "mqtt out",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "topic": "nodered/local/pong",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9ec41186cf8390e2",
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f56ee82ef6cbd21f",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "5da01fec22a83745",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "9ec41186cf8390e2",
+        "type": "mqtt-broker",
+        "name": "Mosquitto",
+        "broker": "192.168.178.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b508f1fdd38be1e0",
+        "type": "group",
+        "z": "df1af7b9448c2c81",
+        "g": "ead7adfc4c3238f3",
+        "name": "Node-RED to Node-RED [REMOTE]",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.52"
+        },
+        "nodes": [
+            "37a2e652ee69b877",
+            "08986895b90d5a6c",
+            "a2e71dc8e02b9480",
+            "53134776a363b5b8",
+            "3ac017740fff6ef6",
+            "ac47c0e55d57c1a0",
+            "813440091ef9c193"
+        ],
+        "x": 54,
+        "y": 299,
+        "w": 792,
+        "h": 172
+    },
+    {
+        "id": "37a2e652ee69b877",
+        "type": "mqtt in",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "topic": "nodered/remote/pong",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9ec41186cf8390e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 430,
+        "wires": [
+            [
+                "3ac017740fff6ef6",
+                "ac47c0e55d57c1a0"
+            ]
+        ]
+    },
+    {
+        "id": "08986895b90d5a6c",
+        "type": "inject",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ping",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 380,
+        "wires": [
+            [
+                "a2e71dc8e02b9480",
+                "53134776a363b5b8",
+                "ac47c0e55d57c1a0"
+            ]
+        ]
+    },
+    {
+        "id": "a2e71dc8e02b9480",
+        "type": "mqtt out",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "topic": "nodered/remote/ping",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9ec41186cf8390e2",
+        "x": 400,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "53134776a363b5b8",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3ac017740fff6ef6",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 430,
+        "wires": []
+    },
+    {
+        "id": "ac47c0e55d57c1a0",
+        "type": "function",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "813440091ef9c193"
+            ]
+        ]
+    },
+    {
+        "id": "813440091ef9c193",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "b508f1fdd38be1e0",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "858b6fdd70a5c528",
+        "type": "group",
+        "z": "df1af7b9448c2c81",
+        "g": "ead7adfc4c3238f3",
+        "name": "Node-RED to ESP",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#3f93cf",
+            "fill-opacity": "0.5",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "d0b777a33d7bbe7a",
+            "4bb60eaa4d6849ba",
+            "2c2c3124d71e92fa",
+            "540331e6879e953b",
+            "fa920a0876504681",
+            "bab9ae63ae112c4b",
+            "c4dfce8d90b504e2"
+        ],
+        "x": 54,
+        "y": 479,
+        "w": 792,
+        "h": 182
+    },
+    {
+        "id": "d0b777a33d7bbe7a",
+        "type": "inject",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "4bb60eaa4d6849ba",
+                "fa920a0876504681",
+                "bab9ae63ae112c4b"
+            ]
+        ]
+    },
+    {
+        "id": "4bb60eaa4d6849ba",
+        "type": "mqtt out",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "topic": "demo/topic/ping",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9ec41186cf8390e2",
+        "x": 360,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2c2c3124d71e92fa",
+        "type": "mqtt in",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "topic": "demo/topic/pong",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9ec41186cf8390e2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "540331e6879e953b",
+                "fa920a0876504681"
+            ]
+        ]
+    },
+    {
+        "id": "540331e6879e953b",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "fa920a0876504681",
+        "type": "function",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\") || 0;\nconst Now = Date.now();\n\nif (msg.payload == \"PING\") {\n    context.set(\"PING\", Now);\n}\nelse {\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 560,
+        "wires": [
+            [
+                "c4dfce8d90b504e2"
+            ]
+        ]
+    },
+    {
+        "id": "bab9ae63ae112c4b",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c4dfce8d90b504e2",
+        "type": "debug",
+        "z": "df1af7b9448c2c81",
+        "g": "858b6fdd70a5c528",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 560,
+        "wires": []
+    }
+]
