@@ -1,0 +1,90 @@
+[
+    {
+        "id": "00e3c36f97572605",
+        "type": "group",
+        "z": "6a1e2a5443d1ef06",
+        "name": "UDP",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#a4a4a4",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "8a17ad675a2e608d",
+            "75a7837890341d76",
+            "918bfcaeef1d2c2b"
+        ],
+        "env": [],
+        "x": 54,
+        "y": 49,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "8a17ad675a2e608d",
+        "type": "udp in",
+        "z": "6a1e2a5443d1ef06",
+        "g": "00e3c36f97572605",
+        "name": "UDP In",
+        "iface": "",
+        "port": "2891",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 130,
+        "y": 90,
+        "wires": [
+            [
+                "75a7837890341d76"
+            ]
+        ]
+    },
+    {
+        "id": "75a7837890341d76",
+        "type": "change",
+        "z": "6a1e2a5443d1ef06",
+        "g": "00e3c36f97572605",
+        "name": "PONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 90,
+        "wires": [
+            [
+                "918bfcaeef1d2c2b"
+            ]
+        ]
+    },
+    {
+        "id": "918bfcaeef1d2c2b",
+        "type": "udp out",
+        "z": "6a1e2a5443d1ef06",
+        "g": "00e3c36f97572605",
+        "name": "UPD Out",
+        "addr": "192.168.178.100",
+        "iface": "",
+        "port": "2892",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 480,
+        "y": 90,
+        "wires": []
+    }
+]
