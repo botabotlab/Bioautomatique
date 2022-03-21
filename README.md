@@ -24,7 +24,16 @@
 * [Installation](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#installation-sur-linux-recommand%C3%A9)
 * [Setup](https://github.com/botabotlab/Bioautomatique/wiki/Serveur-et-logiciels#configuration-de-node-red)
 
-### Devoir
+#### Devoir (Node-RED)
 
 [Énoncés](https://github.com/botabotlab/Bioautomatique/wiki/Devoir-1)
 
+### Protocoles de communication (UDP, TCP, HTTP,WS, MQTT)
+
+#### Node-RED
+
+
+
+#### ESP8266 (et ESP32)
+
+* [Code Demo](https://github.com/botabotlab/Bioautomatique/tree/main/demo/esp)
