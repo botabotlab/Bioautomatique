@@ -1,0 +1,83 @@
+[
+    {
+        "id": "1347d817486d5177",
+        "type": "group",
+        "z": "6a1e2a5443d1ef06",
+        "name": "HTTP",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffff7f",
+            "fill-opacity": "0.51",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "4cc2f1b99d834f82",
+            "11728fcf8a3ecd97",
+            "edd9e9fe461e3454"
+        ],
+        "env": [],
+        "x": 54,
+        "y": 319,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "4cc2f1b99d834f82",
+        "type": "http in",
+        "z": "6a1e2a5443d1ef06",
+        "g": "1347d817486d5177",
+        "name": "HTTP In",
+        "url": "/remote/test",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "edd9e9fe461e3454"
+            ]
+        ]
+    },
+    {
+        "id": "11728fcf8a3ecd97",
+        "type": "http response",
+        "z": "6a1e2a5443d1ef06",
+        "g": "1347d817486d5177",
+        "name": "HTTP Out",
+        "statusCode": "",
+        "headers": {},
+        "x": 480,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "edd9e9fe461e3454",
+        "type": "change",
+        "z": "6a1e2a5443d1ef06",
+        "g": "1347d817486d5177",
+        "name": "PONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "11728fcf8a3ecd97"
+            ]
+        ]
+    }
+]
