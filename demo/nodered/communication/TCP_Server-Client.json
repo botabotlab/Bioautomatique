@@ -1,0 +1,547 @@
+[
+    {
+        "id": "9dcf72cdfcb86785",
+        "type": "group",
+        "z": "e6dd4b31399ed8f5",
+        "name": "TCP",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000",
+            "fill": "#a4a4a4",
+            "fill-opacity": "0.54"
+        },
+        "nodes": [
+            "2c1bf9ff696ba59d",
+            "f8df319d70b7027f",
+            "1758b2dfe86e3ac8"
+        ],
+        "x": 18,
+        "y": 23,
+        "w": 784,
+        "h": 504
+    },
+    {
+        "id": "2c1bf9ff696ba59d",
+        "type": "group",
+        "z": "e6dd4b31399ed8f5",
+        "g": "9dcf72cdfcb86785",
+        "name": "Node-RED to Node-RED [LOCAL]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "2eeaba7cf7bdedd9",
+            "e7b7f3b5187a42e0",
+            "c1f6487862ee3f01",
+            "3d48dfcec2e383ce",
+            "676444668642b0a4",
+            "a627d66eab70b9b8",
+            "228c4cfa2cf4e061",
+            "acae3def798f2cce",
+            "8f5ffaf21898b88f"
+        ],
+        "x": 44,
+        "y": 49,
+        "w": 732,
+        "h": 172
+    },
+    {
+        "id": "2eeaba7cf7bdedd9",
+        "type": "inject",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 140,
+        "y": 130,
+        "wires": [
+            [
+                "3d48dfcec2e383ce",
+                "a627d66eab70b9b8",
+                "676444668642b0a4"
+            ]
+        ]
+    },
+    {
+        "id": "e7b7f3b5187a42e0",
+        "type": "tcp in",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "TCP In Local",
+        "server": "server",
+        "host": "127.0.0.1",
+        "port": "1881",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "base64": false,
+        "tls": "",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "c1f6487862ee3f01"
+            ]
+        ]
+    },
+    {
+        "id": "c1f6487862ee3f01",
+        "type": "change",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "228c4cfa2cf4e061"
+            ]
+        ]
+    },
+    {
+        "id": "3d48dfcec2e383ce",
+        "type": "tcp request",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "TCP Req Local",
+        "server": "127.0.0.1",
+        "port": "1881",
+        "out": "time",
+        "ret": "string",
+        "splitc": "0",
+        "newline": "",
+        "tls": "",
+        "x": 320,
+        "y": 130,
+        "wires": [
+            [
+                "a627d66eab70b9b8",
+                "8f5ffaf21898b88f"
+            ]
+        ]
+    },
+    {
+        "id": "676444668642b0a4",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 90,
+        "wires": []
+    },
+    {
+        "id": "a627d66eab70b9b8",
+        "type": "function",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 130,
+        "wires": [
+            [
+                "acae3def798f2cce"
+            ]
+        ]
+    },
+    {
+        "id": "228c4cfa2cf4e061",
+        "type": "tcp out",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "TCP Out Local",
+        "host": "",
+        "port": "",
+        "beserver": "reply",
+        "base64": false,
+        "end": false,
+        "tls": "",
+        "x": 520,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "acae3def798f2cce",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 130,
+        "wires": []
+    },
+    {
+        "id": "8f5ffaf21898b88f",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "2c1bf9ff696ba59d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 90,
+        "wires": []
+    },
+    {
+        "id": "f8df319d70b7027f",
+        "type": "group",
+        "z": "e6dd4b31399ed8f5",
+        "g": "9dcf72cdfcb86785",
+        "name": "Node-RED to Node-RED [REMOTE]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.55",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "2ae17987d6d62cdf",
+            "f6fa53d7683e66bb",
+            "76fbfecf67dcf3e5",
+            "afbf22e273785144",
+            "9dc8efc0312a237c",
+            "918bfb282f065338"
+        ],
+        "x": 44,
+        "y": 239,
+        "w": 732,
+        "h": 122
+    },
+    {
+        "id": "2ae17987d6d62cdf",
+        "type": "inject",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "f6fa53d7683e66bb",
+                "afbf22e273785144",
+                "918bfb282f065338"
+            ]
+        ]
+    },
+    {
+        "id": "f6fa53d7683e66bb",
+        "type": "tcp request",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "TCP Req Remote",
+        "server": "192.168.178.100",
+        "port": "2893",
+        "out": "time",
+        "ret": "string",
+        "splitc": "0",
+        "newline": "",
+        "tls": "",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "afbf22e273785144",
+                "76fbfecf67dcf3e5"
+            ]
+        ]
+    },
+    {
+        "id": "76fbfecf67dcf3e5",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "afbf22e273785144",
+        "type": "function",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "9dc8efc0312a237c"
+            ]
+        ]
+    },
+    {
+        "id": "9dc8efc0312a237c",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "918bfb282f065338",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "f8df319d70b7027f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1758b2dfe86e3ac8",
+        "type": "group",
+        "z": "e6dd4b31399ed8f5",
+        "g": "9dcf72cdfcb86785",
+        "name": "Node-RED to ESP8266",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#7fb7df",
+            "label": true,
+            "color": "#000000",
+            "fill-opacity": "0.48"
+        },
+        "nodes": [
+            "e8e083e0521fafd0",
+            "302eb0a521346cf1",
+            "ff5288112c4ca815",
+            "e89d6118bb507328",
+            "e39e1b83662d6e33",
+            "125f5b77caa8def1"
+        ],
+        "x": 44,
+        "y": 379,
+        "w": 732,
+        "h": 122
+    },
+    {
+        "id": "e8e083e0521fafd0",
+        "type": "inject",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "ff5288112c4ca815",
+                "e39e1b83662d6e33",
+                "302eb0a521346cf1"
+            ]
+        ]
+    },
+    {
+        "id": "302eb0a521346cf1",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ff5288112c4ca815",
+        "type": "tcp request",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "TCP Req Remote",
+        "server": "192.168.178.136",
+        "port": "80",
+        "out": "time",
+        "ret": "string",
+        "splitc": "0",
+        "newline": "",
+        "tls": "",
+        "x": 340,
+        "y": 460,
+        "wires": [
+            [
+                "e39e1b83662d6e33",
+                "e89d6118bb507328"
+            ]
+        ]
+    },
+    {
+        "id": "e89d6118bb507328",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e39e1b83662d6e33",
+        "type": "function",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\n\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 460,
+        "wires": [
+            [
+                "125f5b77caa8def1"
+            ]
+        ]
+    },
+    {
+        "id": "125f5b77caa8def1",
+        "type": "debug",
+        "z": "e6dd4b31399ed8f5",
+        "g": "1758b2dfe86e3ac8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 460,
+        "wires": []
+    }
+]
