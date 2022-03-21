@@ -1,0 +1,542 @@
+[
+    {
+        "id": "2062743cc095ff05",
+        "type": "group",
+        "z": "6dfd89ccea390ff0",
+        "name": "UDP",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "color": "#000000",
+            "fill": "#a4a4a4",
+            "fill-opacity": "0.54"
+        },
+        "nodes": [
+            "d267dcfa5f40465f",
+            "3498ce91298f4e3c",
+            "5da3e601fe08b40a"
+        ],
+        "x": 38,
+        "y": 33,
+        "w": 774,
+        "h": 494
+    },
+    {
+        "id": "d267dcfa5f40465f",
+        "type": "group",
+        "z": "6dfd89ccea390ff0",
+        "g": "2062743cc095ff05",
+        "name": "Node-RED to Node-RED [LOCAL]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "6edf11e31aa36b09",
+            "c4465d26743e0b0e",
+            "32c16ac75ad9f6fd",
+            "e9f777ef8cfcdb81",
+            "42767b971d2b834e",
+            "825ccc7f6c310dd2",
+            "43c4f1fd5d89145f",
+            "601fdc5dfd15549f",
+            "637a7f7c0f841b6e"
+        ],
+        "x": 64,
+        "y": 59,
+        "w": 722,
+        "h": 172
+    },
+    {
+        "id": "6edf11e31aa36b09",
+        "type": "inject",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "42767b971d2b834e",
+                "32c16ac75ad9f6fd"
+            ]
+        ]
+    },
+    {
+        "id": "c4465d26743e0b0e",
+        "type": "change",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 150,
+        "wires": [
+            [
+                "825ccc7f6c310dd2"
+            ]
+        ]
+    },
+    {
+        "id": "32c16ac75ad9f6fd",
+        "type": "function",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "e9f777ef8cfcdb81"
+            ]
+        ]
+    },
+    {
+        "id": "e9f777ef8cfcdb81",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "42767b971d2b834e",
+        "type": "udp out",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "UDP Ping Local",
+        "addr": "127.0.0.1",
+        "iface": "",
+        "port": "1881",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 350,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "825ccc7f6c310dd2",
+        "type": "udp out",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "UDP Pong Local",
+        "addr": "127.0.0.1",
+        "iface": "",
+        "port": "1881",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 680,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "43c4f1fd5d89145f",
+        "type": "udp in",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "UDP In Local",
+        "iface": "",
+        "port": "1881",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 170,
+        "y": 150,
+        "wires": [
+            [
+                "601fdc5dfd15549f",
+                "637a7f7c0f841b6e",
+                "32c16ac75ad9f6fd"
+            ]
+        ]
+    },
+    {
+        "id": "601fdc5dfd15549f",
+        "type": "function",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "Filter",
+        "func": "if(msg.payload == \"PING\"){\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 150,
+        "wires": [
+            [
+                "c4465d26743e0b0e"
+            ]
+        ]
+    },
+    {
+        "id": "637a7f7c0f841b6e",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "d267dcfa5f40465f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 190,
+        "wires": []
+    },
+    {
+        "id": "3498ce91298f4e3c",
+        "type": "group",
+        "z": "6dfd89ccea390ff0",
+        "g": "2062743cc095ff05",
+        "name": "Node-RED to Node-RED [REMOTE]",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ff7f7f",
+            "fill-opacity": "0.5",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "203f6992a91b7ff8",
+            "fb332a21b46f2da0",
+            "290c6f048e4fe252",
+            "d62d9136cccf3551",
+            "7524f9ef3f0b81e5",
+            "65df791f37206f27"
+        ],
+        "x": 64,
+        "y": 239,
+        "w": 722,
+        "h": 132
+    },
+    {
+        "id": "203f6992a91b7ff8",
+        "type": "inject",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "fb332a21b46f2da0",
+                "290c6f048e4fe252",
+                "65df791f37206f27"
+            ]
+        ]
+    },
+    {
+        "id": "fb332a21b46f2da0",
+        "type": "udp out",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "UDP Ping ",
+        "addr": "192.168.178.100",
+        "iface": "",
+        "port": "2891",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 310,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "290c6f048e4fe252",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 330,
+        "wires": []
+    },
+    {
+        "id": "d62d9136cccf3551",
+        "type": "udp in",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "UDP Pong",
+        "iface": "",
+        "port": "2892",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "7524f9ef3f0b81e5",
+                "65df791f37206f27"
+            ]
+        ]
+    },
+    {
+        "id": "7524f9ef3f0b81e5",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "65df791f37206f27",
+        "type": "function",
+        "z": "6dfd89ccea390ff0",
+        "g": "3498ce91298f4e3c",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 330,
+        "wires": [
+            [
+                "7524f9ef3f0b81e5"
+            ]
+        ]
+    },
+    {
+        "id": "5da3e601fe08b40a",
+        "type": "group",
+        "z": "6dfd89ccea390ff0",
+        "g": "2062743cc095ff05",
+        "name": "Node-RED to ESP8266",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#7fb7df",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "091b962bd089025e",
+            "4201bf9c30e6e247",
+            "17b1a84489d3b0c9",
+            "23af3e1e928dc1d5",
+            "ca66f66b603e9d9e",
+            "093f4c7c6c3b03bb"
+        ],
+        "x": 64,
+        "y": 379,
+        "w": 722,
+        "h": 122
+    },
+    {
+        "id": "091b962bd089025e",
+        "type": "inject",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PING",
+        "payloadType": "str",
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "093f4c7c6c3b03bb",
+                "4201bf9c30e6e247",
+                "23af3e1e928dc1d5"
+            ]
+        ]
+    },
+    {
+        "id": "4201bf9c30e6e247",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "17b1a84489d3b0c9",
+        "type": "udp in",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "UDP Pong",
+        "iface": "",
+        "port": "2891",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "ca66f66b603e9d9e",
+                "23af3e1e928dc1d5"
+            ]
+        ]
+    },
+    {
+        "id": "23af3e1e928dc1d5",
+        "type": "function",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "Latency",
+        "func": "const PingTS = context.get(\"PING\")||0;\nconst Now = Date.now();\nif(msg.payload == \"PING\"){\n    context.set(\"PING\", Now);\n}\nelse{\n    msg.payload = Now - PingTS;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "ca66f66b603e9d9e"
+            ]
+        ]
+    },
+    {
+        "id": "ca66f66b603e9d9e",
+        "type": "debug",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "093f4c7c6c3b03bb",
+        "type": "udp out",
+        "z": "6dfd89ccea390ff0",
+        "g": "5da3e601fe08b40a",
+        "name": "UDP Ping ",
+        "addr": "192.168.178.136",
+        "iface": "",
+        "port": "2891",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 310,
+        "y": 420,
+        "wires": []
+    }
+]
