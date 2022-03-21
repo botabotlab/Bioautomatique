@@ -1,0 +1,90 @@
+[
+    {
+        "id": "0dee80653370f917",
+        "type": "group",
+        "z": "6a1e2a5443d1ef06",
+        "name": "TCP",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#a4a4a4",
+            "fill-opacity": "0.52",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "70831c756647a506",
+            "a5fd560d66c3bd72",
+            "44bb17f39e84b03f"
+        ],
+        "env": [],
+        "x": 54,
+        "y": 139,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "70831c756647a506",
+        "type": "tcp in",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0dee80653370f917",
+        "name": "TCP In",
+        "server": "server",
+        "host": "",
+        "port": "2893",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "44bb17f39e84b03f"
+            ]
+        ]
+    },
+    {
+        "id": "a5fd560d66c3bd72",
+        "type": "tcp out",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0dee80653370f917",
+        "host": "",
+        "port": "",
+        "beserver": "reply",
+        "base64": false,
+        "end": false,
+        "name": "TCP Out",
+        "x": 480,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "44bb17f39e84b03f",
+        "type": "change",
+        "z": "6a1e2a5443d1ef06",
+        "g": "0dee80653370f917",
+        "name": "PONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PONG",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "a5fd560d66c3bd72"
+            ]
+        ]
+    }
+]
